@@ -32,6 +32,7 @@ with open('fr-wordlist.json') as file:
         unsure = []
         avoid = []
         knownArray = []
+        avoidDict = {} # TODO
         index = 0
         for i in range(0, len(clues)):
             if clues[i] == '\\':
@@ -39,6 +40,7 @@ with open('fr-wordlist.json') as file:
             if i > 0 and clues[i - 1] == '\\':
                 if clues[i] not in avoid:
                     avoid.append(clues[i])
+                avoidDict[index] = clues[i] # TODO
             else:
                 if clues[i].isupper():
                     known[index] = clues[i].lower()
@@ -46,6 +48,7 @@ with open('fr-wordlist.json') as file:
                         knownArray.append(clues[i].lower())
                 else:
                     unsure.append(clues[i])
+                    avoidDict[index] = clues[i] # TODO
             index += 1
         possibilities = []
         for word in wordlist[str(length)]:
@@ -53,6 +56,9 @@ with open('fr-wordlist.json') as file:
             for knownLetter in known:
                 if word[knownLetter] != known[knownLetter]:
                     found = False
+            for avoidLetter in avoidDict: # TODO
+                if word[avoidLetter] == avoidDict[avoidLetter]: # TODO
+                    found = False # TODO
             for avoidLetter in avoid:
                 if avoidLetter in word and avoidLetter not in unsure and avoidLetter not in knownArray:
                     found = False
