@@ -1,11 +1,24 @@
 import sys
 import json
+import math
 
 def init(wordlist):
     allPossibilities = []
-    if len(sys.argv[1]) == 2 and sys.argv[1][1].isdigit():
-        for word in wordlist[sys.argv[1][1]]:
-            if word.startswith(sys.argv[1][0]):
+    if len(sys.argv[1]) > 1:
+        isInit = False
+        isValid = True
+        letter = sys.argv[1][0].lower()
+        length = sys.argv[1][1:]
+        for i in range(1, len(sys.argv[1])):
+            if sys.argv[1][i].isdigit() == True:
+                isInit = True
+            elif sys.argv[1][i].isdigit() == False and isInit == True:
+                print("{} is not a valid number, stop messing with me :P".format(length))
+                exit()
+        if isInit == False:
+            return
+        for word in wordlist[length]:
+            if word.startswith(letter):
                 allPossibilities.append(word)
         print(allPossibilities)
         exit()
