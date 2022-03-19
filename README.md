@@ -8,17 +8,29 @@ Vous pouvez revisionner cette aide en tapant :
 ```sh
 python3 motus.py --help
 ```
-Voici comment faire fonctionner ce bot :
+Comment faire fonctionner le bot :  
+Ecrivez le mot que vous avez tapé, en écrivant les lettres en fonction de leur résultat :
 - **A** *(majuscule)* : Lettre bien placée.
 - **a** *(minuscule)* : Lettre mal placée.
 - **\a** *(précédée par un \\)* : Mauvaise lettre.
 
-Vous pouvez spécifier plusieurs lignes de la grille.  
-**Exemple :**  
+Vous pouvez spécifier plusieurs lignes de la grille, en les séparant par un espace.  
+
+Si vous ne savez pas par quoi commencer, vous pouvez spécifier la lettre de début puis le nombre de lettres *(**m5** par exemple)*, le bot vous indiquera alors toutes les possibilités.
+
+---
+
+**Exemples :**  
+```sh
+python3 motus.py m5
+```
+`-> motus, ...`
 ```sh
 python3 motus.py M\a\i\nS MOT\oS
 ```
 `-> motus`
+
+---
 
 Nous n'avons pas tous les mots malheureusement, mais une liste de **336 531** mots.  
 Si vous souhaitez ajouter de nouveaux mots, vous pouvez éditer le fichier fr-wordlist.json et faire une PR, merci !  

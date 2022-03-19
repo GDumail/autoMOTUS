@@ -1,16 +1,31 @@
 import sys
 import json
 
+def init(wordlist):
+    allPossibilities = []
+    if len(sys.argv[1]) == 2 and sys.argv[1][1].isdigit():
+        for word in wordlist[sys.argv[1][1]]:
+            if word.startswith(sys.argv[1][0]):
+                allPossibilities.append(word)
+        print(allPossibilities)
+        exit()
+
 if len(sys.argv) < 2 or sys.argv[1] == "--help":
     print("Bienvenu sur Auto MOTUS !")
     print("Vous pouvez revisionner cette aide en tapant : 'python3 motus.py --help'")
-    print("Voici comment faire fonctionner ce bot :")
+    print("Comment faire fonctionner le bot :")
+    print("Ecrivez le mot que vous avez tapé, en écrivant les lettres en fonction de leur résultat :")
     print("- A (majuscule) : Lettre bien placée.")
     print("- a (minuscule) : Lettre mal placée.")
     print("- \\a (précédée par un \\) : Mauvaise lettre.")
     print()
-    print("Vous pouvez spécifier plusieurs lignes de la grille.")
-    print("Exemple :")
+    print("Vous pouvez spécifier plusieurs lignes de la grille, en les séparant par un espace.")
+    print()
+    print("Si vous ne savez pas par quoi commencer, vous pouvez spécifier la lettre de début puis le nombre de lettres (m5 par exemple), le bot vous indiquera alors toutes les possibilités.")
+    print()
+    print("Exemples :")
+    print("    python3 motus.py m5")
+    print("    -> motus, ...")
     print("    python3 motus.py M\\a\\i\\nS MOT\\oS")
     print("    -> motus")
     print()
@@ -21,6 +36,7 @@ if len(sys.argv) < 2 or sys.argv[1] == "--help":
 
 with open('fr-wordlist.json') as file:
     wordlist = json.load(file)
+    init(wordlist)
     length = 0
     for c in sys.argv[1]:
         if c != '\\':
